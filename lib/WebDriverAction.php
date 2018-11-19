@@ -13,13 +13,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+namespace Facebook\WebDriver;
+
 /**
  * Interface representing a single user-interaction action.
  */
-interface WebDriverAction {
-
-  /**
-   * @return void
-   */
-  public function perform();
+interface WebDriverAction
+{
+    public function perform();
 }

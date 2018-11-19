@@ -13,30 +13,49 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-/**
- * An example test case for php-webdriver.
- * 
- * Try running it by 
- *   '../vendor/phpunit/phpunit/phpunit.php ExampleTestCase.php'
- */
-class FileUploadTest extends WebDriverTestCase {
-  
-  public function testFileUploading() {
-    $this->driver->get($this->getTestPath('upload.html'));
-    $file_input = $this->driver->findElement(WebDriverBy::id('upload'));
-    $file_input->setFileDetector(new LocalFileDetector())
-               ->sendKeys(__DIR__ . '/files/FileUploadTestCaseFile.txt');
-    self::assertNotEquals($this->getFilePath(), $file_input->getAttribute('value'));
-  }
+namespace Facebook\WebDriver;
 
-  public function testUselessFileDetectorSendKeys() {
-    $this->driver->get($this->getTestPath('upload.html'));
-    $file_input = $this->driver->findElement(WebDriverBy::id('upload'));
-    $file_input->sendKeys($this->getFilePath());
-    self::assertEquals($this->getFilePath(), $file_input->getAttribute('value'));
-  }
-  
-  private function getFilePath() {
-    return __DIR__ . '/files/FileUploadTestCaseFile.txt';
-  }
+use Facebook\WebDriver\Remote\LocalFileDetector;
+
+/**
+ * @covers \Facebook\WebDriver\Remote\LocalFileDetector
+ * @covers \Facebook\WebDriver\Remote\RemoteWebElement
+ */
+class FileUploadTest extends WebDriverTestCase
+{
+    /**
+     * @group exclude-edge
+     * https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/6052385/
+     */
+    public function testShouldUploadAFile()
+    {
+        $this->driver->get($this->getTestPageUrl('upload.html'));
+
+        $fileElement = $this->driver->findElement(WebDriverBy::name('upload'));
+
+        $fileElement->setFileDetector(new LocalFileDetector())
+            ->sendKeys($this->getTestFilePath());
+
+        $fileElement->submit();
+
+        $this->driver->wait()->until(
+            WebDriverExpectedCondition::titleIs('File upload endpoint')
+        );
+
+        $uploadedFilesList = $this->driver->findElements(WebDriverBy::cssSelector('ul.uploaded-files li'));
+        $this->assertCount(1, $uploadedFilesList);
+
+        $uploadedFileName = $this->driver->findElement(WebDriverBy::cssSelector('ul.uploaded-files li span.file-name'))
+            ->getText();
+        $uploadedFileSize = $this->driver->findElement(WebDriverBy::cssSelector('ul.uploaded-files li span.file-size'))
+            ->getText();
+
+        $this->assertSame('FileUploadTestFile.txt', $uploadedFileName);
+        $this->assertSame('10', $uploadedFileSize);
+    }
+
+    private function getTestFilePath()
+    {
+        return __DIR__ . '/Fixtures/FileUploadTestFile.txt';
+    }
 }

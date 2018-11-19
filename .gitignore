@@ -1,6 +1,9 @@
 composer.phar
 composer.lock
 vendor
+.php_cs.cache
+phpunit.xml
+logs/
 
 # generic files to ignore
 *.lock
@@ -8,3 +11,4 @@ vendor
 *~
 *.swp
 .idea
+.vscode
