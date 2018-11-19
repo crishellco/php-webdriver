@@ -9,7 +9,7 @@
     "issues": "https://github.com/crishellco/php-webdriver/issues",
     "source": "https://github.com/crishellco/php-webdriver"
   },
-  "minimum-stability": "beta",
+  "minimum-stability": "dev",
   "require": {
     "php": "^5.6 || ~7.0",
     "symfony/process": "^2.8 || ^3.1 || ^4.0",
