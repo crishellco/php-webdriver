@@ -1,5 +1,5 @@
 {
-  "name": "crishellco/webdriver",
+  "name": "crishellco/php-webdriver",
   "description": "A PHP client for Selenium WebDriver",
   "keywords": ["webdriver", "selenium", "php", "facebook"],
   "homepage": "https://github.com/crishellco/php-webdriver",
