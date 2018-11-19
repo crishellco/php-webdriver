@@ -1,14 +1,13 @@
 {
-  "name": "facebook/webdriver",
+  "name": "crishellco/webdriver",
   "description": "A PHP client for Selenium WebDriver",
   "keywords": ["webdriver", "selenium", "php", "facebook"],
-  "homepage": "https://github.com/facebook/php-webdriver",
+  "homepage": "https://github.com/crishellco/php-webdriver",
   "type": "library",
   "license": "Apache-2.0",
   "support": {
-    "issues": "https://github.com/facebook/php-webdriver/issues",
-    "forum": "https://www.facebook.com/groups/phpwebdriver/",
-    "source": "https://github.com/facebook/php-webdriver"
+    "issues": "https://github.com/crishellco/php-webdriver/issues",
+    "source": "https://github.com/crishellco/php-webdriver"
   },
   "minimum-stability": "beta",
   "require": {
