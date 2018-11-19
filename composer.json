@@ -55,5 +55,5 @@
       "vendor/bin/parallel-lint -j 10 ./lib ./tests",
       "vendor/bin/phpstan.phar analyze ./lib ./tests --level 2 -c phpstan.neon --ansi"
     ]
-  },
+  }
 }
