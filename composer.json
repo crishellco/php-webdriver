@@ -56,9 +56,4 @@
       "vendor/bin/phpstan.phar analyze ./lib ./tests --level 2 -c phpstan.neon --ansi"
     ]
   },
-  "extra": {
-    "branch-alias": {
-      "dev-community": "1.5-dev"
-    }
-  }
 }
